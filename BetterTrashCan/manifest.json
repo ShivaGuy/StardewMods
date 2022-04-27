@@ -1,7 +1,7 @@
 {
-    "Name": "BetterTrashCan",
+    "Name": "Better Trash Can",
     "Author": "shivaGuy",
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "Description": "Changes the reclamation price when trashing an item.",
     "UniqueID": "shivaGuy.BetterTrashCan",
     "EntryDLL": "BetterTrashCan.dll",

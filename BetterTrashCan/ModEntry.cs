@@ -5,41 +5,57 @@ using StardewValley;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using StardewObject = StardewValley.Object;
+using StardewModdingAPI.Events;
+using GenericModConfigMenu;
 
 namespace BetterTrashCan
 {
     public class ModEntry : Mod
     {
+        private static ModConfig Config;
+
         public override void Entry(IModHelper helper)
         {
-            Patch.Initialize(Helper.ReadConfig<ModConfig>(), Monitor);
+            Config = Helper.ReadConfig<ModConfig>();
 
             var original = AccessTools.Method(typeof(Utility), nameof(Utility.getTrashReclamationPrice));
-            var prefix = new HarmonyMethod(typeof(Patch), nameof(Patch.Prefix));
+            var patched = new HarmonyMethod(typeof(ModEntry), nameof(Patch_getTrashReclamationPrice));
 
-            new Harmony(ModManifest.UniqueID).Patch(original, prefix);
+            new Harmony(ModManifest.UniqueID).Patch(original, patched);
+
+            Helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         }
-    }
 
-    internal static class Patch
-    {
-        private static ModConfig Config;
-        private static IMonitor Monitor;
-
-        internal static void Initialize(ModConfig config, IMonitor monitor)
+        private void OnGameLaunched(object sender, GameLaunchedEventArgs evt)
         {
-            Config = config;
-            Monitor = monitor;
+            var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
+
+            if (configMenu == null)
+                return;
+
+            configMenu.Register(
+                mod: ModManifest,
+                reset: () => Config = new ModConfig(),
+                save: () => Helper.WriteConfig(Config)
+            );
+
+            configMenu.AddTextOption(
+                mod: ModManifest,
+                name: () => "Progression Mode",
+                getValue: () => Config.progression.ToString(),
+                setValue: value => Config.progression = (Progression)Enum.Parse(typeof(Progression), value),
+                allowedValues: new string[] { Progression.Linear.ToString(), Progression.Exponential.ToString() }
+            );
         }
 
-        internal static bool Prefix(Item i, Farmer f, out int __result)
+        internal static bool Patch_getTrashReclamationPrice(Item i, Farmer f, out int __result)
         {
             __result = -1;
 
             double sellPercentage = f.trashCanLevel / 4.0;
 
             if (Config.progression == Progression.Exponential)
-                sellPercentage = f.trashCanLevel > 0 ? Math.Pow(3.164, f.trashCanLevel) / 100 : 0;
+                sellPercentage = f.trashCanLevel > 0 ? Math.Floor(Math.Pow(3.164, f.trashCanLevel)) / 100 : 0;
 
             if (i.canBeTrashed() && i is not Wallpaper && i is not Furniture)
             {
@@ -47,9 +63,9 @@ namespace BetterTrashCan
                 {
                     __result = (int)(i.Stack * (obj.sellToStorePrice(-1L) * sellPercentage));
                 }
-                else if (i is MeleeWeapon || i is Ring || i is Boots)
+                if (i is MeleeWeapon || i is Ring || i is Boots)
                 {
-                    __result = (int)(i.Stack * (i.salePrice() * sellPercentage));
+                    __result = (int)(i.Stack * ((i.salePrice() / 2.0) * sellPercentage));
                 }
             }
 
