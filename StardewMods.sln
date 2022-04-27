@@ -3,9 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTrashCan", "BetterTrashCan\BetterTrashCan.csproj", "{79D3D3FA-FE60-49F4-ACFE-538F9A30245C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTrashCan", "BetterTrashCan\BetterTrashCan.csproj", "{79D3D3FA-FE60-49F4-ACFE-538F9A30245C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FarmAnimalChoices", "FarmAnimalChoices\FarmAnimalChoices.csproj", "{4052D357-0721-4B87-BCD9-F2C3345E00CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomTrashCan", "CustomTrashCan\CustomTrashCan.csproj", "{322FC3ED-7CF4-4C71-B632-76B44E51D0F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsValley", "CommandsValley\CommandsValley.csproj", "{AA162CAF-2614-4A77-9CA5-CE18121B6E4B}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Common.Patching\Common.Patching.projitems*{e0903979-15d3-4900-94ad-f1ffaf01d0bd}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,6 +24,18 @@ Global
 		{79D3D3FA-FE60-49F4-ACFE-538F9A30245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79D3D3FA-FE60-49F4-ACFE-538F9A30245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79D3D3FA-FE60-49F4-ACFE-538F9A30245C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4052D357-0721-4B87-BCD9-F2C3345E00CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4052D357-0721-4B87-BCD9-F2C3345E00CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4052D357-0721-4B87-BCD9-F2C3345E00CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4052D357-0721-4B87-BCD9-F2C3345E00CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322FC3ED-7CF4-4C71-B632-76B44E51D0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322FC3ED-7CF4-4C71-B632-76B44E51D0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322FC3ED-7CF4-4C71-B632-76B44E51D0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322FC3ED-7CF4-4C71-B632-76B44E51D0F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA162CAF-2614-4A77-9CA5-CE18121B6E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA162CAF-2614-4A77-9CA5-CE18121B6E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA162CAF-2614-4A77-9CA5-CE18121B6E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA162CAF-2614-4A77-9CA5-CE18121B6E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
