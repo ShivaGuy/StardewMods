@@ -1,10 +1,10 @@
 {
-    "Name": "Commands Valley",
-    "Author": "ShivaGuy",
-    "Version": "0.0.0",
-    "Description": "Adds a bunch of commands.",
-    "UniqueID": "ShivaGuy.CommandsValley",
-    "EntryDLL": "CommandsValley.dll",
-    "MinimumApiVersion": "3.0.0",
-    "UpdateKeys": []
+  "Name": "Commands Valley",
+  "Author": "ShivaGuy",
+  "Version": "0.0.1-beta",
+  "Description": "Adds a bunch of commands.",
+  "UniqueID": "ShivaGuy.CommandsValley",
+  "EntryDLL": "CommandsValley.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": []
 }
