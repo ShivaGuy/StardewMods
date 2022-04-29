@@ -39,8 +39,8 @@ namespace ShivaGuy.Stardew.CustomTrashCan
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
-                name: () => "Level 0 Multiplier",
-                tooltip: () => "Trash Can (Not Upgraded)",
+                name: () => "0. Trash Can",
+                tooltip: () => "Level 0 Multiplier",
                 min: 0.0f,
                 max: 1.0f,
                 interval: 0.01f,
@@ -51,8 +51,8 @@ namespace ShivaGuy.Stardew.CustomTrashCan
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
-                name: () => "Level 1 Multiplier",
-                tooltip: () => "Trash Can (Copper)",
+                name: () => "1. Trash Can (Copper)",
+                tooltip: () => "Level 1 Multiplier",
                 min: 0.0f,
                 max: 1.0f,
                 interval: 0.01f,
@@ -63,8 +63,8 @@ namespace ShivaGuy.Stardew.CustomTrashCan
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
-                name: () => "Level 2 Multiplier",
-                tooltip: () => "Trash Can (Iron)",
+                name: () => "2. Trash Can (Iron)",
+                tooltip: () => "Level 2 Multiplier",
                 min: 0.0f,
                 max: 1.0f,
                 interval: 0.01f,
@@ -75,8 +75,8 @@ namespace ShivaGuy.Stardew.CustomTrashCan
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
-                name: () => "Level 3 Multiplier",
-                tooltip: () => "Trash Can (Gold)",
+                name: () => "3. Trash Can (Gold)",
+                tooltip: () => "Level 3 Multiplier",
                 min: 0.0f,
                 max: 1.0f,
                 interval: 0.01f,
@@ -87,8 +87,8 @@ namespace ShivaGuy.Stardew.CustomTrashCan
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
-                name: () => "Level 4 Multiplier",
-                tooltip: () => "Trash Can (Iridium)",
+                name: () => "4. Trash Can (Iridium)",
+                tooltip: () => "Level 4 Multiplier",
                 min: 0.0f,
                 max: 1.0f,
                 interval: 0.01f,
