@@ -1,10 +1,10 @@
 {
-    "Name": "Farm Animal Choices",
-    "Author": "ShivaGuy",
-    "Version": "0.0.0",
-    "Description": "",
-    "UniqueID": "ShivaGuy.FarmAnimalChoices",
-    "EntryDLL": "FarmAnimalChoices.dll",
-    "MinimumApiVersion": "3.0.0",
-    "UpdateKeys": []
+  "Name": "Farm Animal Choices",
+  "Author": "ShivaGuy",
+  "Version": "0.0.1-beta",
+  "Description": "",
+  "UniqueID": "ShivaGuy.FarmAnimalChoices",
+  "EntryDLL": "FarmAnimalChoices.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": []
 }

@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>FarmAnimalChoices</AssemblyName>
         <EnableHarmony>true</EnableHarmony>
         <Nullable>enable</Nullable>
+        <RootNamespace>ShivaGuy.Stardew.FarmAnimalChoices</RootNamespace>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.0.1" />
