@@ -4,6 +4,10 @@ When trashing an item, you reclaim upto 100% of the value. It changes the defaul
 
 ## Reference Table
 
-![](images/cover.png)
+![](images/price-table.png)
 
-This mod uses Harmony to patch the reclaimation price calculation in the game and is not compatible with the mods that do the same.
+## See also
+---
+
+- [Release notes](Changelog.md)
+- [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11814)

@@ -1,11 +1,15 @@
 # Custom Trash Can
 
-Custom Trash Can allows you to configure/customize the item reclamation price for all levels of [Trash Cans](https://stardewvalleywiki.com/Trash_Cans).
+Customize the item reclamation price for all levels of [Trash Cans](https://stardewvalleywiki.com/Trash_Cans).
 
-Edit config.json directly to go beyond 100% refund value. 😁
+Edit config.json or use [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) to modify trash reclamation percentage.
 
-Or, modify it in game using [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
+![](images/config.png)
 
-![](https://i.imgur.com/1cTP6ft.png)
+___Cheat__:  Edit config.json directly to go beyond 100% refund value._
 
-This mod uses Harmony to patch the reclaimation price calculation in the game and is not compatible with the mods that do the same.
+## See also
+---
+
+- [Release notes](Changelog.md)
+- [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11835)
