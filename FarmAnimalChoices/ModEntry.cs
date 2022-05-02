@@ -1,30 +1,30 @@
 ﻿using GenericModConfigMenu;
 using HarmonyLib;
+using ShivaGuy.Stardew.FarmAnimalChoices.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using ShivaGuy.Stardew.FarmAnimalChoices.Patch;
 
 namespace ShivaGuy.Stardew.FarmAnimalChoices
 {
     public class ModEntry : Mod
     {
         public static ModConfig Config { get; private set; }
-        public static IMonitor Logger { get; private set; }
+        public static Mod Context { get; private set; }
 
         public override void Entry(IModHelper helper)
         {
-            Config = Helper.ReadConfig<ModConfig>();
-            Logger = Monitor;
+            Config = helper.ReadConfig<ModConfig>();
+            Context = this;
 
             var harmony = new Harmony(ModManifest.UniqueID);
 
-            Patch_FarmAnimal.Apply(harmony);
-            Patch_PurchaseAnimalsMenu.Apply(harmony);
+            FarmAnimalPatch.ApplyPatch(harmony);
+            PurchaseAnimalsMenuPatch.ApplyPatch(harmony);
 
-            Helper.Events.GameLoop.GameLaunched += InitModConfigMenu;
+            Helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         }
 
-        private void InitModConfigMenu(object sender, GameLaunchedEventArgs evt)
+        private void OnGameLaunched(object sender, GameLaunchedEventArgs evt)
         {
             var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
 

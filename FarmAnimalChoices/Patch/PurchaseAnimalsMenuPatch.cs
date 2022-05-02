@@ -1,16 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using HarmonyLib;
-using StardewObject = StardewValley.Object;
 using StardewValley;
 using StardewValley.Menus;
 using System;
 using System.Collections.Generic;
-using static ShivaGuy.Stardew.FarmAnimalChoices.ModEntry;
+using SDV_Object = StardewValley.Object;
 
 namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
 {
-    internal static class Patch_PurchaseAnimalsMenu
+    internal static class PurchaseAnimalsMenuPatch
     {
         private static int MaxCols = 3;
 
@@ -39,25 +38,25 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
         private static bool Has_BigBarn { get { return Game1.getFarm().isBuildingConstructed("Big Barn") || Has_DeluxeBarn; } }
         private static bool Has_DeluxeBarn { get { return Game1.getFarm().isBuildingConstructed("Deluxe Barn"); } }
 
-        private static bool Disabled_ProgressionMode { get { return !Config?.ProgressionMode ?? false; } }
+        private static bool Disabled_ProgressionMode { get { return !ModEntry.Config?.ProgressionMode ?? false; } }
         private static bool Seen_Shane8HeartEvent { get { return Game1.player.eventsSeen.Contains(3900074); } }
         private static bool Unlocked_Sewers { get { return Game1.player.mailReceived.Contains("OpenedSewer"); } }
         private static bool Achieved_Perfection { get { return Game1.player.mailReceived.Contains("Farm_Eternal"); } }
 
-        public static void Apply(Harmony harmony)
+        public static void ApplyPatch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Constructor(typeof(PurchaseAnimalsMenu), new Type[] { typeof(List<StardewObject>) }),
-                prefix: new HarmonyMethod(AccessTools.Method(typeof(Patch_PurchaseAnimalsMenu), nameof(Patch_PurchaseAnimalsMenu.ctor_Prefix)), before: new string[] { "aedenthorn.BulkAnimalPurchase" }),
-                postfix: new HarmonyMethod(typeof(Patch_PurchaseAnimalsMenu), nameof(Patch_PurchaseAnimalsMenu.ctor_Postfix)));
+                original: AccessTools.Constructor(typeof(PurchaseAnimalsMenu), new Type[] { typeof(List<SDV_Object>) }),
+                prefix: new HarmonyMethod(AccessTools.Method(typeof(PurchaseAnimalsMenuPatch), nameof(ctor_Prefix)), before: new string[] { "aedenthorn.BulkAnimalPurchase" }),
+                postfix: new HarmonyMethod(typeof(PurchaseAnimalsMenuPatch), nameof(ctor_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PurchaseAnimalsMenu), nameof(PurchaseAnimalsMenu.getAnimalTitle)),
-                prefix: new HarmonyMethod(typeof(Patch_PurchaseAnimalsMenu), nameof(Patch_PurchaseAnimalsMenu.getAnimalTitle_Prefix)));
+                prefix: new HarmonyMethod(typeof(PurchaseAnimalsMenuPatch), nameof(getAnimalTitle_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PurchaseAnimalsMenu), nameof(PurchaseAnimalsMenu.getAnimalDescription)),
-                prefix: new HarmonyMethod(typeof(Patch_PurchaseAnimalsMenu), nameof(Patch_PurchaseAnimalsMenu.getAnimalDescription_Prefix)));
+                prefix: new HarmonyMethod(typeof(PurchaseAnimalsMenuPatch), nameof(getAnimalDescription_Prefix)));
         }
 
         private static string AnimalDisplayName(string name)
@@ -66,7 +65,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
             return data.Equals(name) ? name : data.Split('/')[25];
         }
 
-        public static void ctor_Prefix(List<StardewObject> stock)
+        public static void ctor_Prefix(List<SDV_Object> stock)
         {
             PurchaseAnimalsMenu.menuHeight = ((stock.Count + 5) / MaxCols) * 85 + 64;
         }
@@ -99,7 +98,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 400)
+                            item = new SDV_Object(100, 1, false, price: 400)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -120,7 +119,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 400)
+                            item = new SDV_Object(100, 1, false, price: 400)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -141,7 +140,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 400)
+                            item = new SDV_Object(100, 1, false, price: 400)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -165,7 +164,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 750)
+                            item = new SDV_Object(100, 1, false, price: 750)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -186,7 +185,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 750)
+                            item = new SDV_Object(100, 1, false, price: 750)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -211,7 +210,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                             scale: 4.0f,
                             unlocked == null)
                         {
-                            item = new StardewObject(100, 1, false, price: 600)
+                            item = new SDV_Object(100, 1, false, price: 600)
                             {
                                 Name = name,
                                 Type = unlocked,
@@ -240,7 +239,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                 scale: 4.0f,
                 unlocked == null)
             {
-                item = new StardewObject(100, 1, false, price: Math.Max(0, Config?.VoidChicken / 2 ?? 0))
+                item = new SDV_Object(100, 1, false, price: Math.Max(0, ModEntry.Config?.VoidChicken / 2 ?? 0))
                 {
                     Name = name,
                     Type = unlocked,
@@ -261,7 +260,7 @@ namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
                 scale: 4.0f,
                 unlocked == null)
             {
-                item = new StardewObject(100, 1, false, price: Math.Max(0, Config?.GoldenChicken / 2 ?? 0))
+                item = new SDV_Object(100, 1, false, price: Math.Max(0, ModEntry.Config?.GoldenChicken / 2 ?? 0))
                 {
                     Name = name,
                     Type = unlocked,

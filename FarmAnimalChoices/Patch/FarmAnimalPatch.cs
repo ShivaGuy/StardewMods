@@ -2,51 +2,53 @@
 using StardewModdingAPI;
 using StardewValley;
 using System;
-using static ShivaGuy.Stardew.FarmAnimalChoices.ModEntry;
 
 namespace ShivaGuy.Stardew.FarmAnimalChoices.Patch
 {
-    internal static class Patch_FarmAnimal
+    internal static class FarmAnimalPatch
     {
-        private static string animalType = "";
+        private static string animalRequested = "";
 
-        private static bool AnimalIsColored(string type)
+        static IMonitor Monitor { get { return ModEntry.Context.Monitor; } }
+
+        private static bool IsNotGeneric(string type)
         {
             return (type.Contains("Chicken") && (type.Contains("White") || type.Contains("Brown") || type.Contains("Blue")))
                 || (type.Contains("Cow") && (type.Contains("White") || type.Contains("Brown")));
         }
 
-        private static bool SimilarAnimals(string type1, string type2)
+        private static bool SameSpacies(string type1, string type2)
         {
             return (type1.Contains("Chicken") && type2.Contains("Chicken"))
                 || (type1.Contains("Cow") && type2.Contains("Cow"))
                 || (type1.Equals(type2));
         }
 
-        public static void Apply(Harmony harmony)
+        public static void ApplyPatch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Constructor(typeof(FarmAnimal), new Type[] { typeof(string), typeof(long), typeof(long) }),
-                prefix: new HarmonyMethod(typeof(Patch_FarmAnimal), nameof(Patch_FarmAnimal.ctor_Prefix)),
-                postfix: new HarmonyMethod(typeof(Patch_FarmAnimal), nameof(Patch_FarmAnimal.ctor_Postfix)));
+                prefix: new HarmonyMethod(typeof(FarmAnimalPatch), nameof(ctor_Prefix)),
+                postfix: new HarmonyMethod(typeof(FarmAnimalPatch), nameof(ctor_Postfix)));
         }
 
         public static void ctor_Prefix(string type)
         {
-            // Avoid type reset by aedenthorn.BulkAnimalPurchase
-            if (AnimalIsColored(type))
-                animalType = type;
+            if (IsNotGeneric(type))
+                animalRequested = type;
         }
 
         public static void ctor_Postfix(FarmAnimal __instance)
         {
-            if (!AnimalIsColored(__instance.type.Value))
+            var animalCreated = __instance.type.Value;
+
+            if (!IsNotGeneric(animalCreated))
                 return;
 
-            if (SimilarAnimals(__instance.type.Value, animalType) && !animalType.Equals(__instance.type.Value))
+            if (SameSpacies(animalCreated, animalRequested) && !animalRequested.Equals(animalCreated))
             {
-                Logger.Log($"Changing animal type from {__instance.type.Value} to {animalType}");
-                __instance.type.Value = animalType;
+                Monitor.Log($"Reverting {animalCreated} back to {animalRequested}.");
+                __instance.type.Value = animalRequested;
                 __instance.reloadData();
             }
         }
