@@ -7,7 +7,6 @@ When trashing an item, you reclaim upto 100% of the value. It changes the defaul
 ![](images/price-table.png)
 
 ## See also
----
 
 - [Release notes](Changelog.md)
 - [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11814)

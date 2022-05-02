@@ -5,7 +5,6 @@ Disable randomised animal purchase, and add all animals (vanilla only) to the Ma
 ![](images/animal-shop.png)
 
 ## See also
----
 
 - [Release notes](Changelog.md)
 - [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11850)

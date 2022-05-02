@@ -9,7 +9,6 @@ Edit config.json or use [Generic Mod Config Menu](https://www.nexusmods.com/star
 ___Cheat__:  Edit config.json directly to go beyond 100% refund value._
 
 ## See also
----
 
 - [Release notes](Changelog.md)
 - [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11835)
