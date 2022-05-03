@@ -10,5 +10,5 @@ ___Cheat__:  Edit config.json directly to go beyond 100% refund value._
 
 ## See also
 
-- [Release notes](Changelog.md)
+- [Release notes](release-notes.md)
 - [Nexusmods page](https://www.nexusmods.com/stardewvalley/mods/11835)
